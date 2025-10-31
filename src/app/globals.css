@@ -1,26 +1,158 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+  🎨 FONDO DE LA PÁGINA
+*/
+body {
+  background-color: #eff6ff;
+  margin: 0;
+  padding: 0;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* 
+  🎨 Efecto de vidrio (glassmorphism)
+*/
+.glass-navbar {
+  background: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.06);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* 
+  🌀 Animación: Fade In suave
+*/
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out;
+}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* 
+  📱 Menú móvil: Slide desde arriba
+*/
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-slide-down {
+  animation: slideDown 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* 
+  ✨ Hover suave
+*/
+.hover-smooth {
+  transition: all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.hover-smooth:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* 
+  🖱️ Subrayado animado
+*/
+.nav-link {
+  position: relative;
+  display: inline-block;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #2563eb;
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* 
+  🌐 Scroll suave + toque limpio
+*/
+html {
+  scroll-behavior: smooth;
+}
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 
+  🖤 FONDO NEGRO PURO
+*/
+.footer-bg {
+  background-color: #000000;
+}
+
+/* 
+  🔵 TEXTO Y ENLACES → azul de tu marca
+*/
+.footer-title {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.footer-link {
+  color: #aaaaaa;
+  transition: color 0.2s ease;
+}
+.footer-link:hover {
+  color: #2563eb; /* blue-600 */
+}
+
+.footer-contact {
+  color: #bbbbbb;
+  line-height: 1.6;
+}
+
+.footer-copyright {
+  color: #888888;
+  font-size: 0.875rem;
+}
+
+/* 
+  🔵 BOTONES DE REDES SOCIALES → versión FINAL (intuitiva, usable, minimalista)
+*/
+.social-btn {
+  width: 40px;
+  height: 40px;
+  background-color: #0c3ea8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  color: white;
+}
+
+.social-btn:hover {
+  background-color: #1d4ed8;
+  transform: scale(1.08);
+}
+
+.social-btn svg {
+  fill: currentColor;
+  stroke: none;
 }
